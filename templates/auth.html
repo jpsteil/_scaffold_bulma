@@ -1,0 +1,16 @@
+[[extend "layout.html"]]
+<div class="columns is-centered mt-6">
+  <div class="column is-5-tablet is-6-desktop is-4-widescreen">
+    <div class="box">
+      <div class="title">[[=request.url.split('/')[-1:][0].replace('_', ' ').title() ]]</div>
+      <hr>
+      [[=form]]
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  document.querySelectorAll('[role="button"]').forEach(function (el) {
+    el.classList.add("button");
+    el.classList.add("ml-2");
+  });
+</script>

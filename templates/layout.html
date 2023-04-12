@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello py4web!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="[[=URL('static', 'css/style.css')]]">
+  <style>
+    .py4web-validation-error {
+      margin-top: -16px;
+      font-size: 0.8em;
+      color: red
+    }
+  </style>
+  [[block page_head]]<!-- individual pages can customize header here -->[[end]]
+</head>
+
+<body>
+  <div class="container hero is-fullheight">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="[[=URL('index')]]">
+          <span class="title">py4web</span>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="[[=URL('index')]]">
+            Home
+          </a>
+
+          <a class="navbar-item">
+            Menu 1
+          </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                Submenu 1
+              </a>
+              <a class="navbar-item">
+                Submenu 2
+              </a>
+              <a class="navbar-item">
+                Submenu 3
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                Sample Menu Item
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              [[if globals().get('user'):]]
+              <a class="button" href="[[=URL('auth/profile')]]">Edit Profile</a>
+              [[if 'change_password' in globals().get('actions',{}).get('allowed_actions',{}):]]
+              <a class="button" href="[[=URL('auth/change_password')]]">Change Password</a>
+              [[pass]]
+              <a class="button" href="[[=URL('auth/logout')]]">Logout</a>
+              [[else:]]
+              <a class="button is-primary" href="[[=URL('auth/register')]]">Sign up</a>
+              <a class="button is-info" href="[[=URL('auth/login')]]">Log in</a>
+              [[pass]]
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div>
+      <!-- Flash alert messages, first optional one in data-alert -->
+      <flash-alerts class="padded" data-alert="[[=globals().get('flash','')]]"></flash-alerts>
+    </div>
+    <div class="content pt-4">
+      [[include]]
+    </div>
+    <footer class="is-flex-align-items-flex-end mt-auto mb-4">
+      <div class="content has-text-centered">
+        <p>
+          Made with <strong>py4web</strong>.
+        </p>
+      </div>
+    </footer>
+  </div>
+</body>
+[[block page_scripts]]<!-- individual pages can add scripts here -->[[end]]
+
+</html>
